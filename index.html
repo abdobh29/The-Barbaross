@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Barbaross — Restaurant & Pizzeria | Mascara</title>
+    
+    <!-- Meta & Favicon -->
+    <meta name="description" content="The Barbaross — Restaurant & Pizzeria de référence à Mascara. Pizzas artisanales, plats garnis généreux, burgers gourmets et ambiance méditerranéenne raffinée.">
+    <link rel="icon" type="image/png" href="assets/logo/logo.png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@400;500;600;700;800&family=Cinzel:wght@500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- ==========================================================================
+       SITE HEADER
+       ========================================================================== -->
+    <header class="site-header" id="site-header">
+        <div class="container">
+            <div class="nav-wrapper">
+                <!-- Brand -->
+                <a href="#hero" class="nav-brand">
+                    <img src="assets/logo/logo.png" alt="The Barbaross Logo" class="nav-logo">
+                    <div class="brand-text">
+                        <h1 data-i18n="brandName">The Barbaross</h1>
+                        <span data-i18n="brandSubtitle">Restaurant & Pizzeria</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav Links -->
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="#atmosphere" class="nav-link" data-i18n="navAtmosphere">Ambiance</a></li>
+                        <li><a href="#signatures" class="nav-link" data-i18n="navSignatures">Signatures</a></li>
+                        <li><a href="#menu" class="nav-link" data-i18n="navMenu">Menu</a></li>
+                        <li><a href="#gallery" class="nav-link" data-i18n="navGallery">Galerie</a></li>
+                        <li><a href="#visit" class="nav-link" data-i18n="navVisit">Localisation</a></li>
+                        <li><a href="#contact" class="nav-link" data-i18n="navContact">Contact</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Actions: Language Switcher & Quick Call -->
+                <div class="nav-actions">
+                    <div class="lang-switcher">
+                        <button class="lang-btn active" data-lang="fr">FR</button>
+                        <button class="lang-btn" data-lang="en">EN</button>
+                        <button class="lang-btn" data-lang="ar">عربي</button>
+                    </div>
+
+                    <a href="tel:0674723651" class="btn-call-header">
+                        <i class="fa-solid fa-phone"></i>
+                        <span class="ltr-only">06 74 72 36 51</span>
+                    </a>
+
+                    <!-- Mobile Hamburger -->
+                    <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Nav Drawer -->
+    <div class="mobile-drawer-backdrop" id="drawer-backdrop"></div>
+    <div class="mobile-nav-drawer" id="mobile-drawer">
+        <div>
+            <div class="nav-brand" style="margin-bottom: 2rem;">
+                <img src="assets/logo/logo.png" alt="The Barbaross" class="nav-logo">
+                <div class="brand-text">
+                    <h1 data-i18n="brandName">The Barbaross</h1>
+                    <span data-i18n="brandSubtitle">Restaurant & Pizzeria</span>
+                </div>
+            </div>
+
+            <ul class="mobile-nav-links">
+                <li><a href="#atmosphere" class="mobile-nav-link" data-i18n="navAtmosphere">Ambiance</a></li>
+                <li><a href="#signatures" class="mobile-nav-link" data-i18n="navSignatures">Signatures</a></li>
+                <li><a href="#menu" class="mobile-nav-link" data-i18n="navMenu">Menu</a></li>
+                <li><a href="#gallery" class="mobile-nav-link" data-i18n="navGallery">Galerie</a></li>
+                <li><a href="#visit" class="mobile-nav-link" data-i18n="navVisit">Localisation</a></li>
+                <li><a href="#contact" class="mobile-nav-link" data-i18n="navContact">Contact</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <div class="lang-switcher" style="margin-bottom: 1.5rem; justify-content: center;">
+                <button class="lang-btn active" data-lang="fr">FR</button>
+                <button class="lang-btn" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="ar">عربي</button>
+            </div>
+            <a href="tel:0674723651" class="btn-primary" style="width: 100%;">
+                <i class="fa-solid fa-phone"></i>
+                <span data-i18n="btnCallLine1">Appeler : 06 74 72 36 51</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+       HERO SECTION
+       ========================================================================== -->
+    <section class="hero-section" id="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <!-- Left: Text & Badges -->
+                <div class="hero-content">
+                    <div class="badge-gold">
+                        <i class="fa-solid fa-compass"></i>
+                        <span>Mascara, Algérie</span>
+                    </div>
+
+                    <h2 class="hero-subtitle gold-text" data-i18n="heroSubtitle">Restaurant & Pizzeria — Mascara</h2>
+                    <h1 class="hero-title">
+                        <span class="serif-title" data-i18n="brandName">The Barbaross</span>
+                    </h1>
+
+                    <p class="hero-tagline" data-i18n="heroTagline">
+                        L'authenticité de la pizza artisanale et la richesse de la gastronomie méditerranéenne.
+                    </p>
+
+                    <div class="hero-meta">
+                        <div class="meta-item">
+                            <div class="meta-icon"><i class="fa-regular fa-clock"></i></div>
+                            <div>
+                                <strong data-i18n="heroHours">11:00 – 00:00 (Tous les jours)</strong>
+                            </div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-icon"><i class="fa-solid fa-location-dot"></i></div>
+                            <div>
+                                <span data-i18n="heroLocation">Rue Mennouar Djebbar, Mascara</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hero-ctas">
+                        <a href="#menu" class="btn-primary">
+                            <i class="fa-solid fa-utensils"></i>
+                            <span data-i18n="btnExploreMenu">Consulter le Menu</span>
+                        </a>
+                        <a href="tel:0674723651" class="btn-secondary">
+                            <i class="fa-solid fa-phone"></i>
+                            <span data-i18n="btnCallNow">Commander par Téléphone</span>
+                        </a>
+                        <a href="https://maps.app.goo.gl/acgz37mik21LEj2j7" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+                            <i class="fa-solid fa-map-location-dot"></i>
+                            <span data-i18n="btnGetDirections">Itinéraire</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right: Cinematic Video Showcase -->
+                <div class="hero-visual">
+                    <div class="video-frame-container">
+                        <div class="video-inner-wrapper">
+                            <video id="hero-video" class="hero-video" autoplay loop muted playsinline poster="assets/logo/logo.png">
+                                <source src="assets/video/restaurant-hero.mp4" type="video/mp4">
+                                Votre navigateur ne supporte pas la lecture vidéo.
+                            </video>
+
+                            <!-- Custom Luxury Video Overlay Controls -->
+                            <div class="video-overlay-controls">
+                                <div class="video-title-tag">
+                                    <i class="fa-solid fa-film" style="color: var(--gold-primary); margin-right: 0.5rem;"></i>
+                                    <span data-i18n="videoTourTitle">Immersion au cœur de The Barbaross</span>
+                                </div>
+                                <div style="display: flex; gap: 0.5rem;">
+                                    <button class="video-ctrl-btn" id="video-play-btn" title="Play/Pause">
+                                        <i class="fa-solid fa-pause"></i>
+                                    </button>
+                                    <button class="video-ctrl-btn" id="video-mute-btn" title="Mute/Unmute">
+                                        <i class="fa-solid fa-volume-xmark"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       ATMOSPHERE & EXPERIENCE SECTION
+       ========================================================================== -->
+    <section class="atmosphere-section" id="atmosphere">
+        <div class="container">
+            <div class="section-header">
+                <div class="badge-gold">
+                    <i class="fa-solid fa-anchor"></i>
+                    <span>Barbaross Prestige</span>
+                </div>
+                <h2 data-i18n="atmosphereHeading">L'Expérience The Barbaross</h2>
+                <p data-i18n="atmosphereSubheading">
+                    Une atmosphère chaleureuse au décor raffiné, pensée pour partager des instants gourmands d'exception.
+                </p>
+            </div>
+
+            <div class="atmosphere-cards">
+                <div class="atmosphere-card">
+                    <div class="card-icon"><i class="fa-solid fa-pizza-slice"></i></div>
+                    <h3 data-i18n="featPizzeriaTitle">Pizzeria Artisanale</h3>
+                    <p data-i18n="featPizzeriaDesc">
+                        Pâte pétrie chaque jour, cuisson dorée au four, fromages fondants et recettes traditionnelles généreuses.
+                    </p>
+                </div>
+
+                <div class="atmosphere-card">
+                    <div class="card-icon"><i class="fa-solid fa-fire-burner"></i></div>
+                    <h3 data-i18n="featGrillTitle">Plats & Grillades</h3>
+                    <p data-i18n="featGrillDesc">
+                        Viandes sélectionnées, marinades maison, plateaux garnis et spécialités culinaires savoureuses.
+                    </p>
+                </div>
+
+                <div class="atmosphere-card">
+                    <div class="card-icon"><i class="fa-solid fa-ship"></i></div>
+                    <h3 data-i18n="featAmbienceTitle">Cadre Méditerranéen</h3>
+                    <p data-i18n="featAmbienceDesc">
+                        Ambiance maritime élégante et accueil attentionné au cœur de Mascara pour vos déjeuners et dîners.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       SIGNATURE DISHES SHOWCASE
+       ========================================================================== -->
+    <section class="signatures-section" id="signatures">
+        <div class="container">
+            <div class="section-header">
+                <div class="badge-gold">
+                    <i class="fa-solid fa-crown"></i>
+                    <span data-i18n="signaturesBadge">Sélection du Chef</span>
+                </div>
+                <h2 data-i18n="signaturesHeading">Nos Créations Emblématiques</h2>
+                <p data-i18n="signaturesSubheading">
+                    Découvrez les spécialités qui font la renommée de The Barbaross.
+                </p>
+            </div>
+
+            <div class="signatures-grid" id="signatures-grid">
+                <!-- Dynamically populated by app.js -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       INTERACTIVE MENU SECTION (QUIKLY DATA AS SOURCE OF TRUTH)
+       ========================================================================== -->
+    <section class="menu-section" id="menu">
+        <div class="container">
+            <div class="section-header">
+                <div class="badge-gold">
+                    <i class="fa-solid fa-book-open"></i>
+                    <span data-i18n="menuBadge">Carte Complète</span>
+                </div>
+                <h2 data-i18n="menuHeading">Notre Menu Officiel</h2>
+                <p data-i18n="menuSubheading">
+                    Retrouvez l'intégralité de nos pizzas, plats, tacos, sandwiches, boissons et douceurs.
+                </p>
+            </div>
+
+            <!-- Controls: Search & Category Filter Tabs -->
+            <div class="menu-controls">
+                <div class="menu-search-wrapper">
+                    <input type="text" id="menu-search-input" class="search-input" placeholder="Rechercher un plat, ingrédient..." data-i18n="searchPlaceholder">
+                    <div class="search-icon-btn">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                </div>
+
+                <!-- 13 Categories Filter -->
+                <div class="category-tabs" id="category-tabs">
+                    <!-- Populated dynamically by app.js -->
+                </div>
+
+                <!-- Pizza Size Filter Bar -->
+                <div class="pizza-size-filter" id="pizza-size-filter">
+                    <span class="size-filter-label" data-i18n="filterSizeLabel">Format Pizza :</span>
+                    <button class="size-pill active" data-size="all" data-i18n="allSizes">Tous les formats</button>
+                    <button class="size-pill" data-size="Medium" data-i18n="sizeMedium">Medium (30cm)</button>
+                    <button class="size-pill" data-size="Large" data-i18n="sizeLarge">Large (40cm)</button>
+                    <button class="size-pill" data-size="Méga" data-i18n="sizeMega">Méga (50cm)</button>
+                </div>
+            </div>
+
+            <!-- Items Grid -->
+            <div class="menu-grid" id="menu-grid">
+                <!-- Populated dynamically by app.js -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       VISUAL GALLERY SECTION
+       ========================================================================== -->
+    <section class="gallery-section" id="gallery">
+        <div class="container">
+            <div class="section-header">
+                <div class="badge-gold">
+                    <i class="fa-solid fa-images"></i>
+                    <span data-i18n="galleryBadge">Visuel</span>
+                </div>
+                <h2 data-i18n="galleryHeading">Galerie & Immersion</h2>
+                <p data-i18n="gallerySubheading">
+                    Une vue authentique sur nos préparations et notre restaurant.
+                </p>
+            </div>
+
+            <div class="gallery-grid" id="gallery-grid">
+                <!-- Populated dynamically by app.js -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       VISIT / LOCATION SECTION
+       ========================================================================== -->
+    <section class="visit-section" id="visit">
+        <div class="container">
+            <div class="visit-grid">
+                <div class="visit-info-card">
+                    <div class="badge-gold">
+                        <i class="fa-solid fa-map-pin"></i>
+                        <span data-i18n="visitBadge">Nous Trouver</span>
+                    </div>
+                    <h2 style="font-size: 2.2rem; margin-bottom: 1.5rem;" data-i18n="visitHeading">Horaires & Accès</h2>
+                    <p style="color: var(--text-secondary); margin-bottom: 2.5rem;" data-i18n="visitSubheading">
+                        Venez savourer nos spécialités sur place au centre de Mascara.
+                    </p>
+
+                    <div class="visit-item">
+                        <div class="visit-icon"><i class="fa-solid fa-location-dot"></i></div>
+                        <div class="visit-text">
+                            <h4 data-i18n="addressTitle">Adresse</h4>
+                            <p data-i18n="addressValue">Rue Mennouar Djebbar, Mascara, Algérie</p>
+                        </div>
+                    </div>
+
+                    <div class="visit-item">
+                        <div class="visit-icon"><i class="fa-regular fa-clock"></i></div>
+                        <div class="visit-text">
+                            <h4 data-i18n="hoursTitle">Horaires d'ouverture</h4>
+                            <p data-i18n="hoursValue">11:00 – 00:00 (7j/7)</p>
+                        </div>
+                    </div>
+
+                    <a href="https://maps.app.goo.gl/acgz37mik21LEj2j7" target="_blank" rel="noopener noreferrer" class="btn-primary" style="margin-top: 1rem; width: 100%;">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        <span data-i18n="btnOpenMaps">Ouvrir dans Google Maps</span>
+                    </a>
+                </div>
+
+                <div class="map-card">
+                    <div class="map-placeholder-box">
+                        <div class="map-pin-pulse">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <h3 style="color: #fff; margin-bottom: 0.5rem;">The Barbaross</h3>
+                        <p style="color: var(--gold-light); margin-bottom: 1.5rem;">Rue Mennouar Djebbar, Mascara</p>
+                        <a href="https://maps.app.goo.gl/acgz37mik21LEj2j7" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            <span data-i18n="btnGetDirections">Itinéraire Google Maps</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       CONTACT SECTION
+       ========================================================================== -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <div class="badge-gold">
+                    <i class="fa-solid fa-phone-volume"></i>
+                    <span data-i18n="contactBadge">Contact Direct</span>
+                </div>
+                <h2 data-i18n="contactHeading">Nous Contacter</h2>
+                <p data-i18n="contactSubheading">
+                    Une commande à emporter ou une question ? Nos équipes sont à votre écoute.
+                </p>
+            </div>
+
+            <div class="contact-cards-grid">
+                <!-- Phone 1 -->
+                <div class="contact-card">
+                    <div class="contact-card-icon"><i class="fa-solid fa-phone"></i></div>
+                    <h3 data-i18n="phoneTitle">Ligne Directe 1</h3>
+                    <p class="ltr-only">06 74 72 36 51</p>
+                    <a href="tel:0674723651" class="btn-primary btn-contact">
+                        <i class="fa-solid fa-phone"></i>
+                        <span class="ltr-only">0674723651</span>
+                    </a>
+                </div>
+
+                <!-- Phone 2 -->
+                <div class="contact-card">
+                    <div class="contact-card-icon"><i class="fa-solid fa-mobile-screen"></i></div>
+                    <h3 data-i18n="phoneTitle">Ligne Directe 2</h3>
+                    <p class="ltr-only">07 93 31 38 53</p>
+                    <a href="tel:0793313853" class="btn-primary btn-contact">
+                        <i class="fa-solid fa-phone"></i>
+                        <span class="ltr-only">0793313853</span>
+                    </a>
+                </div>
+
+                <!-- TikTok -->
+                <div class="contact-card">
+                    <div class="contact-card-icon"><i class="fa-brands fa-tiktok"></i></div>
+                    <h3 data-i18n="tiktokTitle">TikTok Officiel</h3>
+                    <p>@the.barbarouss</p>
+                    <a href="https://www.tiktok.com/@the.barbarouss" target="_blank" rel="noopener noreferrer" class="btn-secondary btn-contact">
+                        <i class="fa-brands fa-tiktok"></i>
+                        <span data-i18n="btnFollowTikTok">Suivre sur TikTok</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand-col">
+                    <div class="footer-logo-row">
+                        <img src="assets/logo/logo.png" alt="The Barbaross" class="footer-logo">
+                        <div>
+                            <h3 style="font-size: 1.25rem; color: #fff;" data-i18n="brandName">The Barbaross</h3>
+                            <span style="font-size: 0.75rem; color: var(--gold-primary); text-transform: uppercase;" data-i18n="brandSubtitle">Restaurant & Pizzeria</span>
+                        </div>
+                    </div>
+                    <p class="footer-desc" data-i18n="footerDescription">
+                        Restaurant & Pizzeria de référence à Mascara. Pizzas artisanales, plats garnis généreux et accueil méditerranéen.
+                    </p>
+                </div>
+
+                <div class="footer-col">
+                    <h4 data-i18n="footerQuickLinks">Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="#atmosphere" data-i18n="navAtmosphere">Ambiance</a></li>
+                        <li><a href="#signatures" data-i18n="navSignatures">Signatures</a></li>
+                        <li><a href="#menu" data-i18n="navMenu">Menu</a></li>
+                        <li><a href="#gallery" data-i18n="navGallery">Galerie</a></li>
+                        <li><a href="#visit" data-i18n="navVisit">Localisation</a></li>
+                        <li><a href="#contact" data-i18n="navContact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4 data-i18n="footerContactTitle">Coordonnées</h4>
+                    <div class="footer-contact-info">
+                        <div class="footer-contact-item">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span data-i18n="addressValue">Rue Mennouar Djebbar, Mascara, Algérie</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fa-regular fa-clock"></i>
+                            <span data-i18n="hoursValue">11:00 – 00:00 (7j/7)</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fa-solid fa-phone"></i>
+                            <span class="ltr-only">06 74 72 36 51 / 07 93 31 38 53</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fa-brands fa-tiktok"></i>
+                            <a href="https://www.tiktok.com/@the.barbarouss" target="_blank" rel="noopener noreferrer" style="color: var(--gold-light);">@the.barbarouss</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div>
+                    &copy; 2026 The Barbaross — Restaurant & Pizzeria. <span data-i18n="footerRights">Tous droits réservés.</span>
+                </div>
+                <div>
+                    <a href="https://maps.app.goo.gl/acgz37mik21LEj2j7" target="_blank" rel="noopener noreferrer" style="color: var(--gold-primary); margin-right: 1rem;">
+                        <i class="fa-solid fa-map-location-dot"></i> Google Maps
+                    </a>
+                    <a href="https://www.tiktok.com/@the.barbarouss" target="_blank" rel="noopener noreferrer" style="color: var(--gold-primary);">
+                        <i class="fa-brands fa-tiktok"></i> TikTok
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================================================
+       DISH LIGHTBOX MODAL
+       ========================================================================== -->
+    <div class="modal-backdrop" id="dish-modal">
+        <div class="modal-container">
+            <button class="modal-close-btn" id="modal-close-btn" aria-label="Close">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="modal-image-wrap">
+                <img id="modal-img" src="" alt="Dish Photo">
+            </div>
+            <div class="modal-body">
+                <div class="modal-header-row">
+                    <h3 class="modal-title" id="modal-title">Nom du plat</h3>
+                    <div class="modal-price" id="modal-price">0 DA</div>
+                </div>
+                <span class="modal-category-tag" id="modal-cat">Catégorie</span>
+
+                <h4 class="modal-section-title" data-i18n="modalIngredients">Composition & Ingrédients</h4>
+                <p class="modal-desc" id="modal-desc">Description des ingrédients</p>
+
+                <div class="modal-variants-grid" id="modal-variants" style="display: none;">
+                    <!-- Populated dynamically if variants exist -->
+                </div>
+
+                <div class="modal-actions">
+                    <a href="tel:0674723651" class="btn-primary">
+                        <i class="fa-solid fa-phone"></i>
+                        <span data-i18n="modalCallToOrder">Commander ce plat</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="menu-data.js"></script>
+    <script src="translations.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
