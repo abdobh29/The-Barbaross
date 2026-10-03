@@ -1,0 +1,10 @@
+# Unrelated installers & binaries
+WindowsPCHealthCheckSetup.msi
+*.msi
+*.exe
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+.DS_Store
+Desktop.ini
