@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page introuvable — The Barbaross</title>
+    <link rel="icon" type="image/png" href="assets/logo/logo.png">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: #0b0c10;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        .container { max-width: 500px; }
+        .code {
+            font-size: 6rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #d4af37, #f5d76e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+        }
+        h1 { font-size: 1.5rem; margin: 1rem 0; }
+        p { color: #aaa; margin-bottom: 2rem; line-height: 1.6; }
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 2rem;
+            background: linear-gradient(135deg, #d4af37, #b8962e);
+            color: #0b0c10;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: transform 0.2s;
+        }
+        .btn:hover { transform: translateY(-2px); }
+        .logo { width: 80px; margin-bottom: 1.5rem; border-radius: 16px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="assets/logo/logo.png" alt="The Barbaross" class="logo" onerror="this.style.display='none'">
+        <div class="code">404</div>
+        <h1>Oups ! Cette page s'est perdue en cuisine 🍕</h1>
+        <p>La page que vous cherchez n'existe pas ou a été déplacée.<br>Retournez découvrir notre délicieux menu !</p>
+        <a href="/" class="btn">← Retour à l'accueil</a>
+    </div>
+</body>
+</html>
