@@ -21,8 +21,8 @@ const menuCategories = [
         "id": "sandwiches",
         "raw_category": "Sandwiches",
         "name": {
-            "fr": "Sandwiches",
-            "en": "Sandwiches",
+            "fr": "Sandwichs",
+            "en": "Sandwichs",
             "ar": "سندويتشات"
         },
         "icon": "fa-burger"
@@ -185,9 +185,9 @@ const menuItems = [
         "categoryId": "sandwiches",
         "categoryName": "Sandwiches",
         "name": {
-            "fr": "Sandwiche Poulet Hachée",
-            "en": "Sandwiche Poulet Hachée",
-            "ar": "Sandwiche Poulet Hachée"
+            "fr": "Sandwich Poulet Hachée",
+            "en": "Sandwich Poulet Hachée",
+            "ar": "Sandwich Poulet Hachée"
         },
         "description": {
             "fr": "Salade, tomate, poulet haché, pommes de terre frites, omelette, fromage, sauce maison",
@@ -205,9 +205,9 @@ const menuItems = [
         "categoryId": "sandwiches",
         "categoryName": "Sandwiches",
         "name": {
-            "fr": "Sandwiche Viande Hachée",
-            "en": "Sandwiche Viande Hachée",
-            "ar": "Sandwiche Viande Hachée"
+            "fr": "Sandwich Viande Hachée",
+            "en": "Sandwich Viande Hachée",
+            "ar": "Sandwich Viande Hachée"
         },
         "description": {
             "fr": "Salade, tomate, viande hachée, pommes de terre frites, omelette, fromage, sauce maison",
@@ -225,9 +225,9 @@ const menuItems = [
         "categoryId": "sandwiches",
         "categoryName": "Sandwiches",
         "name": {
-            "fr": "Sandwiche Escalope",
-            "en": "Sandwiche Escalope",
-            "ar": "Sandwiche Escalope"
+            "fr": "Sandwich Escalope",
+            "en": "Sandwich Escalope",
+            "ar": "Sandwich Escalope"
         },
         "description": {
             "fr": "Salade, tomate, escalope, pommes de terre frites, omelette, fromage, sauce maison",
@@ -245,9 +245,9 @@ const menuItems = [
         "categoryId": "sandwiches",
         "categoryName": "Sandwiches",
         "name": {
-            "fr": "Sandwiche Mariné",
-            "en": "Sandwiche Mariné",
-            "ar": "Sandwiche Mariné"
+            "fr": "Sandwich Mariné",
+            "en": "Sandwich Mariné",
+            "ar": "Sandwich Mariné"
         },
         "description": {
             "fr": "Salade, tomate, poulet mariné, pommes de terre frites, fromage, sauce maison",
@@ -265,9 +265,9 @@ const menuItems = [
         "categoryId": "sandwiches",
         "categoryName": "Sandwiches",
         "name": {
-            "fr": "Sandwiche Chicken Taquitos",
-            "en": "Sandwiche Chicken Taquitos",
-            "ar": "Sandwiche Chicken Taquitos"
+            "fr": "Sandwich Chicken Taquitos",
+            "en": "Sandwich Chicken Taquitos",
+            "ar": "Sandwich Chicken Taquitos"
         },
         "description": {
             "fr": "Salade, tomate, poulet mariné, pommes de terre frites, fromage, sauce mexicaine",
@@ -285,9 +285,9 @@ const menuItems = [
         "categoryId": "sandwiches",
         "categoryName": "Sandwiches",
         "name": {
-            "fr": "Sandwiche Chicken Fahita",
-            "en": "Sandwiche Chicken Fahita",
-            "ar": "Sandwiche Chicken Fahita"
+            "fr": "Sandwich Chicken Fahita",
+            "en": "Sandwich Chicken Fahita",
+            "ar": "Sandwich Chicken Fahita"
         },
         "description": {
             "fr": "Salade, tomate, poulet mariné, pommes de terre frites, fromage, oignons et poivrons, sauce mexicaine",
@@ -305,9 +305,9 @@ const menuItems = [
         "categoryId": "sandwiches",
         "categoryName": "Sandwiches",
         "name": {
-            "fr": "Sandwiche Les Zaba",
-            "en": "Sandwiche Les Zaba",
-            "ar": "Sandwiche Les Zaba"
+            "fr": "Sandwich Les Zaba",
+            "en": "Sandwich Les Zaba",
+            "ar": "Sandwich Les Zaba"
         },
         "description": {
             "fr": "Salade, tomate, Les Zaba, pommes de terre frites, fromage, oignons, sauce",
@@ -325,9 +325,9 @@ const menuItems = [
         "categoryId": "sandwiches",
         "categoryName": "Sandwiches",
         "name": {
-            "fr": "Sandwiche Merguez",
-            "en": "Sandwiche Merguez",
-            "ar": "Sandwiche Merguez"
+            "fr": "Sandwich Merguez",
+            "en": "Sandwich Merguez",
+            "ar": "Sandwich Merguez"
         },
         "description": {
             "fr": "Salade, tomate, merguez, pommes de terre frites, fromage, sauce maison",
@@ -345,9 +345,9 @@ const menuItems = [
         "categoryId": "sandwiches",
         "categoryName": "Sandwiches",
         "name": {
-            "fr": "Sandwiche Escalope Panée",
-            "en": "Sandwiche Escalope Panée",
-            "ar": "Sandwiche Escalope Panée"
+            "fr": "Sandwich Escalope Panée",
+            "en": "Sandwich Escalope Panée",
+            "ar": "Sandwich Escalope Panée"
         },
         "description": {
             "fr": "Salade, tomate, escalope panée, pommes de terre frites, omelette, fromage, sauce maison",
@@ -365,9 +365,9 @@ const menuItems = [
         "categoryId": "sandwiches",
         "categoryName": "Sandwiches",
         "name": {
-            "fr": "Sandwiche Hot-Dog",
-            "en": "Sandwiche Hot-Dog",
-            "ar": "Sandwiche Hot-Dog"
+            "fr": "Sandwich Hot-Dog",
+            "en": "Sandwich Hot-Dog",
+            "ar": "Sandwich Hot-Dog"
         },
         "description": {
             "fr": "Salade, tomate, hot-dog, pommes de terre frites, omelette, fromage, sauce maison",
@@ -385,9 +385,9 @@ const menuItems = [
         "categoryId": "sandwiches",
         "categoryName": "Sandwiches",
         "name": {
-            "fr": "Sandwiche Barberoussa 7036",
-            "en": "Sandwiche Barberoussa 7036",
-            "ar": "Sandwiche Barberoussa 7036"
+            "fr": "Sandwich Barberoussa 7036",
+            "en": "Sandwich Barberoussa 7036",
+            "ar": "Sandwich Barberoussa 7036"
         },
         "description": {
             "fr": "Salade, tomate, poulet mariné, pommes de terre frites, tranches de fromage, sauce maison, sauce barbecue",
@@ -405,9 +405,9 @@ const menuItems = [
         "categoryId": "sandwiches",
         "categoryName": "Sandwiches",
         "name": {
-            "fr": "Sandwiche Baba Hsan",
-            "en": "Sandwiche Baba Hsan",
-            "ar": "Sandwiche Baba Hsan"
+            "fr": "Sandwich Baba Hsan",
+            "en": "Sandwich Baba Hsan",
+            "ar": "Sandwich Baba Hsan"
         },
         "description": {
             "fr": "Salade, tomate, escalope panée, pommes de terre frites, tranches de fromage, sauce maison, sauce barbecue",
@@ -425,9 +425,9 @@ const menuItems = [
         "categoryId": "sandwiches",
         "categoryName": "Sandwiches",
         "name": {
-            "fr": "Sandwiche Panozo",
-            "en": "Sandwiche Panozo",
-            "ar": "Sandwiche Panozo"
+            "fr": "Sandwich Panozo",
+            "en": "Sandwich Panozo",
+            "ar": "Sandwich Panozo"
         },
         "description": {
             "fr": "Salade, tomate, poulet fumé, cheddar, camembert, sauce maison, sauce barbecue",
@@ -1945,9 +1945,9 @@ const menuItems = [
         "categoryId": "plats-garnis",
         "categoryName": "Plats Garnis",
         "name": {
-            "fr": "Plat Kebeb",
-            "en": "Plat Kebeb",
-            "ar": "Plat Kebeb"
+            "fr": "Plat Kebab",
+            "en": "Plat Kebab",
+            "ar": "Plat Kebab"
         },
         "description": {
             "fr": "Plat de kebab",
@@ -2365,9 +2365,9 @@ const menuItems = [
         "categoryId": "packs",
         "categoryName": "Packs",
         "name": {
-            "fr": "Pac M'chawi",
-            "en": "Pac M'chawi",
-            "ar": "Pac M'chawi"
+            "fr": "Pack M'chawi",
+            "en": "Pack M'chawi",
+            "ar": "Pack M'chawi"
         },
         "description": {
             "fr": "Chich kebab, chich taouk, riz, pommes de terre frites, salade",
@@ -2385,9 +2385,9 @@ const menuItems = [
         "categoryId": "packs",
         "categoryName": "Packs",
         "name": {
-            "fr": "Pac Chawarma",
-            "en": "Pac Chawarma",
-            "ar": "Pac Chawarma"
+            "fr": "Pack Chawarma",
+            "en": "Pack Chawarma",
+            "ar": "Pack Chawarma"
         },
         "description": {
             "fr": "Chawarma, riz, salade, pommes de terre frites, sauce tomate",
@@ -2405,9 +2405,9 @@ const menuItems = [
         "categoryId": "packs",
         "categoryName": "Packs",
         "name": {
-            "fr": "Pac Crispy",
-            "en": "Pac Crispy",
-            "ar": "Pac Crispy"
+            "fr": "Pack Crispy",
+            "en": "Pack Crispy",
+            "ar": "Pack Crispy"
         },
         "description": {
             "fr": "Poulet pané tendre, pommes de terre frites, sauce",
