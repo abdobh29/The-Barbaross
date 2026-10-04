@@ -417,7 +417,7 @@ const menuItems = [
         "price": 750,
         "priceFormatted": "750 Da",
         "hasSizes": false,
-        "image": null,
+        "image": "Sandwiche Baba Hsan.jpg",
         "isSignature": false
     },
     {
@@ -1937,7 +1937,7 @@ const menuItems = [
         "price": 1200,
         "priceFormatted": "1200 Da",
         "hasSizes": false,
-        "image": null,
+        "image": "Plat Ballotine.jpg",
         "isSignature": false
     },
     {
@@ -1957,7 +1957,7 @@ const menuItems = [
         "price": 1300,
         "priceFormatted": "1300 Da",
         "hasSizes": false,
-        "image": null,
+        "image": "Plat Kebeb.jpg",
         "isSignature": false
     },
     {
@@ -2157,7 +2157,7 @@ const menuItems = [
         "price": 1500,
         "priceFormatted": "1500 Da",
         "hasSizes": false,
-        "image": null,
+        "image": "Tajine Boulettes de Poulet Haché aux Olives.jpg",
         "isSignature": false
     },
     {
