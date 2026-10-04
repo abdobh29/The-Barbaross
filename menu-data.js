@@ -1017,7 +1017,7 @@ const menuItems = [
         "price": 1000,
         "priceFormatted": "1000 Da",
         "hasSizes": false,
-        "image": null,
+        "image": "Pizza Indian.jpg",
         "isSignature": false
     },
     {
@@ -1377,7 +1377,7 @@ const menuItems = [
         "price": 2000,
         "priceFormatted": "2000 Da",
         "hasSizes": false,
-        "image": null,
+        "image": "Pizza Indian.jpg",
         "isSignature": false
     },
     {
@@ -1717,7 +1717,7 @@ const menuItems = [
         "price": 3000,
         "priceFormatted": "3000 Da",
         "hasSizes": false,
-        "image": null,
+        "image": "Pizza Indian.jpg",
         "isSignature": false
     },
     {
@@ -2037,7 +2037,7 @@ const menuItems = [
         "price": 800,
         "priceFormatted": "800 Da",
         "hasSizes": false,
-        "image": null,
+        "image": "Spaghetti Bolognaise.jpg",
         "isSignature": false
     },
     {
@@ -2097,7 +2097,7 @@ const menuItems = [
         "price": 1800,
         "priceFormatted": "1800 Da",
         "hasSizes": false,
-        "image": null,
+        "image": "Dorade Royale.jpg",
         "isSignature": false
     },
     {
@@ -2237,7 +2237,7 @@ const menuItems = [
         "price": 1500,
         "priceFormatted": "1500 Da",
         "hasSizes": false,
-        "image": null,
+        "image": "Salade Barberousse.jpg",
         "isSignature": false
     },
     {
@@ -2277,7 +2277,7 @@ const menuItems = [
         "price": 200,
         "priceFormatted": "200 Da",
         "hasSizes": false,
-        "image": null,
+        "image": "Keba.jpg",
         "isSignature": false
     },
     {
@@ -2317,7 +2317,7 @@ const menuItems = [
         "price": 200,
         "priceFormatted": "200 Da",
         "hasSizes": false,
-        "image": null,
+        "image": "Soupe.jpg",
         "isSignature": false
     },
     {
@@ -2377,7 +2377,7 @@ const menuItems = [
         "price": 4500,
         "priceFormatted": "4500 Da",
         "hasSizes": false,
-        "image": null,
+        "image": "Pac M'chawi.jpg",
         "isSignature": false
     },
     {
@@ -2397,7 +2397,7 @@ const menuItems = [
         "price": 3500,
         "priceFormatted": "3500 Da",
         "hasSizes": false,
-        "image": null,
+        "image": "Pac Chawarma.jpg",
         "isSignature": false
     },
     {
@@ -2517,7 +2517,7 @@ const menuItems = [
         "price": 400,
         "priceFormatted": "400 Da",
         "hasSizes": false,
-        "image": null,
+        "image": "Crème Dessert.jpg",
         "isSignature": false
     },
     {
