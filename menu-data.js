@@ -457,7 +457,7 @@ const menuItems = [
         "price": 500,
         "priceFormatted": "500 Da",
         "hasSizes": false,
-        "image": null,
+        "image": "Big Poulet Haché.jpg",
         "isSignature": false
     },
     {
@@ -477,7 +477,7 @@ const menuItems = [
         "price": 500,
         "priceFormatted": "500 Da",
         "hasSizes": false,
-        "image": null,
+        "image": "Big Viande Hachée.jpg",
         "isSignature": false
     },
     {
@@ -497,7 +497,7 @@ const menuItems = [
         "price": 500,
         "priceFormatted": "500 Da",
         "hasSizes": false,
-        "image": null,
+        "image": "Big Poulet Haché.jpg",
         "isSignature": false
     },
     {
@@ -517,7 +517,7 @@ const menuItems = [
         "price": 600,
         "priceFormatted": "600 Da",
         "hasSizes": false,
-        "image": null,
+        "image": "Big Poulet Haché.jpg",
         "isSignature": false
     },
     {
@@ -537,7 +537,7 @@ const menuItems = [
         "price": 800,
         "priceFormatted": "800 Da",
         "hasSizes": false,
-        "image": null,
+        "image": "Big Viande Hachée.jpg",
         "isSignature": false
     },
     {
@@ -557,7 +557,7 @@ const menuItems = [
         "price": 800,
         "priceFormatted": "800 Da",
         "hasSizes": false,
-        "image": null,
+        "image": "Big Viande Hachée.jpg",
         "isSignature": false
     },
     {
@@ -577,7 +577,7 @@ const menuItems = [
         "price": 800,
         "priceFormatted": "800 Da",
         "hasSizes": false,
-        "image": null,
+        "image": "Big Viande Hachée.jpg",
         "isSignature": false
     },
     {
@@ -1037,7 +1037,7 @@ const menuItems = [
         "price": 1000,
         "priceFormatted": "1000 Da",
         "hasSizes": false,
-        "image": null,
+        "image": "Pizza Ranch.jpg",
         "isSignature": false
     },
     {
@@ -1057,7 +1057,7 @@ const menuItems = [
         "price": 1000,
         "priceFormatted": "1000 Da",
         "hasSizes": false,
-        "image": null,
+        "image": "Pizza Fumatto.jpg",
         "isSignature": false
     },
     {
@@ -1097,7 +1097,7 @@ const menuItems = [
         "price": 1300,
         "priceFormatted": "1300 Da",
         "hasSizes": false,
-        "image": null,
+        "image": "Pizza Türk.jpg",
         "isSignature": false
     },
     {
@@ -1397,7 +1397,7 @@ const menuItems = [
         "price": 2000,
         "priceFormatted": "2000 Da",
         "hasSizes": false,
-        "image": null,
+        "image": "Pizza Ranch.jpg",
         "isSignature": false
     },
     {
@@ -1417,7 +1417,7 @@ const menuItems = [
         "price": 2000,
         "priceFormatted": "2000 Da",
         "hasSizes": false,
-        "image": null,
+        "image": "Pizza Fumatto.jpg",
         "isSignature": false
     },
     {
@@ -1737,7 +1737,7 @@ const menuItems = [
         "price": 3000,
         "priceFormatted": "3000 Da",
         "hasSizes": false,
-        "image": null,
+        "image": "Pizza Ranch.jpg",
         "isSignature": false
     },
     {
@@ -1757,7 +1757,7 @@ const menuItems = [
         "price": 3000,
         "priceFormatted": "3000 Da",
         "hasSizes": false,
-        "image": null,
+        "image": "Pizza Fumatto.jpg",
         "isSignature": false
     },
     {
@@ -1977,7 +1977,7 @@ const menuItems = [
         "price": 1500,
         "priceFormatted": "1500 Da",
         "hasSizes": false,
-        "image": null,
+        "image": "Plat Chich Taouk.jpg",
         "isSignature": false
     },
     {
@@ -2137,7 +2137,7 @@ const menuItems = [
         "price": 1500,
         "priceFormatted": "1500 Da",
         "hasSizes": false,
-        "image": null,
+        "image": "Tajine de Pruneaux et Amandes.jpg",
         "isSignature": false
     },
     {
@@ -2197,7 +2197,7 @@ const menuItems = [
         "price": 400,
         "priceFormatted": "400 Da",
         "hasSizes": false,
-        "image": null,
+        "image": "Hors d'Oeuvre Royale.jpg",
         "isSignature": false
     },
     {
@@ -2417,7 +2417,7 @@ const menuItems = [
         "price": 3500,
         "priceFormatted": "3500 Da",
         "hasSizes": false,
-        "image": null,
+        "image": "Pac Crispy.jpg",
         "isSignature": false
     },
     {
