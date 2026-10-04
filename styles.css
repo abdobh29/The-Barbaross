@@ -1703,3 +1703,56 @@ button {
         height: 220px;
     }
 }
+
+/* ==========================================================================
+   MOBILE OPTIMIZATIONS — added 2026-10-04
+   Bigger touch targets, no header overflow, readable hero on small screens
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* Header: compact so logo + name + lang + burger fit 360-390px */
+    .nav-wrapper { height: 68px; gap: 0.5rem; }
+    .nav-brand { gap: 0.6rem; min-width: 0; }
+    .nav-logo { width: 42px; height: 42px; flex-shrink: 0; }
+    .brand-text { min-width: 0; }
+    .brand-text h1 { font-size: 1.05rem; overflow: hidden; text-overflow: ellipsis; }
+    .brand-text span { font-size: 0.6rem; letter-spacing: 0.1em; }
+    .nav-actions { gap: 0.5rem; margin-left: auto; }
+    .lang-switcher { padding: 2px; flex-shrink: 0; }
+    .lang-btn { padding: 0.55rem 0.65rem; font-size: 0.78rem; min-height: 42px; }
+
+    /* Hamburger: real 44px touch target */
+    .mobile-toggle {
+        width: 44px; height: 44px;
+        flex-direction: column; justify-content: center; align-items: center;
+        gap: 5px; flex-shrink: 0;
+    }
+    .mobile-toggle span { width: 24px; }
+
+    /* Hero: smaller title, less vertical space */
+    .hero-section { min-height: 82vh; }
+    .hero-title { font-size: 2rem; }
+    .hero-subtitle { font-size: 1rem; }
+
+    /* Touch targets: min 44px */
+    .size-pill { padding: 0.7rem 1.1rem; font-size: 0.9rem; min-height: 44px; }
+    .category-btn { padding: 0.8rem 1.3rem; min-height: 44px; }
+    .qty-btn { min-width: 44px; min-height: 44px; }
+
+    /* Gallery captions: always visible on touch (no hover) */
+    .gallery-hover-overlay { opacity: 1; }
+
+    /* Dish modal: buttons wrap instead of squeezing */
+    .modal-actions { flex-wrap: wrap; }
+    .modal-actions .btn { flex: 1 1 140px; }
+
+    /* Tighter section padding on mobile */
+    .menu-section, .signatures-section, .gallery-section { padding: 3.5rem 0; }
+}
+
+@media (max-width: 480px) {
+    .container { padding: 0 1rem; }
+    .hero-title { font-size: 1.7rem; }
+    .brand-text h1 { font-size: 0.95rem; }
+    .brand-text span { display: none; }
+    .section-title { font-size: 1.6rem; }
+}
