@@ -392,17 +392,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const galleryContainer = document.getElementById('gallery-grid');
         if (!galleryContainer) return;
 
-        // Select 9 authentic dishes for the gallery
+        // Select 9 dishes with real photos for the gallery
         const galleryDishes = [
-            menuItems.find(d => d.name.fr.includes("Baba arudj")),
-            menuItems.find(d => d.name.fr.includes("Pizza barberousse")),
-            menuItems.find(d => d.name.fr.includes("Big Barberousse")),
-            menuItems.find(d => d.name.fr.includes("Pizza étoile")),
-            menuItems.find(d => d.name.fr.includes("Plat mélange")),
+            menuItems.find(d => d.name.fr.includes("Baba Hsan")),
+            menuItems.find(d => d.name.fr.includes("Pizza Indian")),
             menuItems.find(d => d.name.fr.includes("Tacos gratiné")),
-            menuItems.find(d => d.name.fr.includes("Pizza 4 fromages")),
-            menuItems.find(d => d.name.fr.includes("Plat poulet roulé")),
-            menuItems.find(d => d.name.fr.includes("Tiramissu au biscuit"))
+            menuItems.find(d => d.name.fr.includes("Dorade Royale")),
+            menuItems.find(d => d.name.fr.includes("Chich Taouk")),
+            menuItems.find(d => d.name.fr.includes("Pac Crispy")),
+            menuItems.find(d => d.name.fr.includes("Spaghetti Bolognaise")),
+            menuItems.find(d => d.name.fr.includes("Hors d'Oeuvre Royale")),
+            menuItems.find(d => d.name.fr.includes("Crème Dessert"))
         ].filter(Boolean);
 
         galleryContainer.innerHTML = galleryDishes.map((dish, idx) => {
