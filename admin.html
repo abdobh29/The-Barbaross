@@ -31,10 +31,11 @@
   .card ol, .card ul { color: var(--muted); font-size: .9rem; margin: 8px 0 8px 20px; line-height: 1.6; }
   .card code { background: #000; padding: 2px 7px; border-radius: 5px; color: var(--gold); font-size: .85em; }
   label { display: block; margin: 12px 0 5px; font-weight: 600; font-size: .9rem; }
-  input[type=text], input[type=password], input[type=number], textarea, select {
+  input[type=text], input[type=password], input[type=number], input[type=file], textarea, select {
     width: 100%; background: var(--surface2); border: 1px solid #3d3d3d; color: var(--text);
     padding: 10px 12px; border-radius: 8px; font-size: .95rem;
   }
+  input[type=file] { padding: 8px 12px; }
   input:focus, textarea:focus, select:focus { outline: none; border-color: var(--gold); }
   textarea { min-height: 70px; resize: vertical; }
   .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
@@ -139,6 +140,14 @@
     <label>Nom (français)</label><input type="text" id="f_name" placeholder="Ex : Pizza Royale">
     <label>Description (ingrédients)</label><textarea id="f_desc" placeholder="Ex : Sauce tomate, mozzarella, ..."></textarea>
     <label>Prix (DA)</label><input type="number" id="f_price" min="0" step="10" placeholder="Ex : 700">
+    <label>Photo du plat</label>
+    <div class="row" style="align-items:flex-start">
+      <img id="f_photoPreview" alt="" style="width:90px;height:90px;object-fit:cover;border-radius:8px;background:#000;display:none;flex-shrink:0">
+      <div style="flex:1;min-width:200px">
+        <input type="file" id="f_photo" accept="image/*" onchange="onPhotoSelect(this)">
+        <div style="font-size:.8rem;color:var(--muted);margin-top:4px">Choisissez une photo depuis le téléphone. Laissez vide pour garder la photo actuelle.</div>
+      </div>
+    </div>
     <div class="row" style="margin-top:16px;justify-content:flex-end">
       <button class="btn ghost" onclick="closeItemModal()">Annuler</button>
       <button class="btn danger hidden" id="f_delete" onclick="deleteItem()">Supprimer</button>
@@ -196,6 +205,7 @@ const CAT_META = {
 const KNOWN_IMAGES = ["Baba arudj.jpg","Big Apple.jpg","Big BMW.jpg","Big Barberousse.jpg","Big Bugatti.jpg","Boissons gazouz g.jpg","Boissons gazouz.jpg","Bourak poulet.jpg","Café au lait.jpg","Café latté.jpg","Café noir.jpg","Camembert.jpg","Canette.jpg","Cappuccino classic.jpg","Cappuccino.jpg","Eaux minérale g.jpg","Eaux minérale.jpg","Flan coutil.jpg","Flan maison.jpg","Frittes corner.jpg","Fromage rouge.jpg","Gouda.jpg","Gratin.jpg","Hors-d'œuvre royal.jpg","Jus de saison.jpg","Jus g.jpg","Jus.jpg","La camomille tisane.jpg","Lait au chocolat.jpg","Lait chaud.jpg","Mousse au chocolat noir.jpg","Mousse caramel.jpg","Mozzarella.jpg","Omelette au fromage.jpg","Pizza 2 fromages.jpg","Pizza 4 fromages.jpg","Pizza 4 saison.jpg","Pizza Blanche Neige.jpg","Pizza Marguerite.jpg","Pizza au thon.jpg","Pizza barberousse.jpg","Pizza boisée.jpg","Pizza fruits de mer.jpg","Pizza kebab.jpg","Pizza merguez.jpg","Pizza napolitaine.jpg","Pizza poulet haché.jpg","Pizza royale.jpg","Pizza végétarienne.jpg","Pizza étoile.jpg","Plat 9al3a.jpg","Plat Kebda.jpg","Plat de riz.jpg","Plat du jour.jpg","Plat escalope grillée.jpg","Plat escalope panée.jpg","Plat merguez.jpg","Plat mélange.jpg","Plat pilons de poulet panés.jpg","Plat poulet hachée.jpg","Plat poulet roulé.jpg","Plat viande hachée.jpg","Poulet fumé.jpg","Salade cezar.jpg","Salade macédoine.jpg","Salede de fruits.jpg","Sandwich chicken fahita.jpg","Sandwich chicken taquitos.jpg","Sandwich escalope grillé.jpg","Sandwich escalope pané.jpg","Sandwich kebda.jpg","Sandwich mariné.jpg","Sandwich merguez.jpg","Sandwich poulet haché.jpg","Sandwich viande hachée.jpg","Sauce piquante au olives.jpg","Snickers.jpg","Soupe de légumes.jpg","Supplément bordure fromage.jpg","Supplément double viande.jpg","Supplément pain burger.jpg","Supplément sauce blanche.jpg","Tacos gratiné.jpg","Tacos mixte.jpg","Tacos pané.jpg","Tacos poulet haché.jpg","Tacos viande hachée.jpg","Thon.jpg","Thé lipton.jpg","Tiramissu au biscuit.jpg","Zanjabil.jpg","cacke 1.jpg","cacke 2.jpg","cacke 3.jpg","cacke 4.jpg","cacke 5.jpg","cacke 6.jpg","cacke 7.jpg","citron.jpg"];
 
 let restaurantInfo = null, menuCategories = [], menuItems = [], fileSha = null, dirty = false;
+let pendingPhotoData = null, pendingPhotoName = null; // photo sélectionnée dans le modal (dataURL JPEG)
 
 /* =====================================================================
    HELPERS
@@ -235,6 +245,49 @@ function guessImage(name){
   return bestScore >= .45 ? best : null;
 }
 function imgSrc(img){ return img ? ('assets/menu/'+encodeURIComponent(img)) : 'assets/logo/logo.png'; }
+
+/* Photo upload : redimensionne côté client puis envoie vers assets/menu/ via l'API GitHub */
+function onPhotoSelect(input){
+  const f = input.files && input.files[0];
+  pendingPhotoData = null; pendingPhotoName = null;
+  const prev = document.getElementById('f_photoPreview');
+  if (!f){ prev.style.display='none'; prev.src=''; return; }
+  const reader = new FileReader();
+  reader.onload = e => {
+    const img = new Image();
+    img.onload = () => {
+      const maxDim = 1200;
+      let w = img.width, h = img.height;
+      if (Math.max(w,h) > maxDim){ const r = maxDim/Math.max(w,h); w = Math.round(w*r); h = Math.round(h*r); }
+      const cv = document.createElement('canvas'); cv.width = w; cv.height = h;
+      cv.getContext('2d').drawImage(img, 0, 0, w, h);
+      pendingPhotoData = cv.toDataURL('image/jpeg', 0.85);
+      const nm = document.getElementById('f_name').value.trim() || f.name.replace(/\.[^.]+$/,'');
+      pendingPhotoName = slugify(nm) + '.jpg';
+      prev.src = pendingPhotoData; prev.style.display = 'block';
+    };
+    img.onerror = () => setStatus('Impossible de lire cette image.','err');
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(f);
+}
+async function uploadPhoto(dataUrl, filename){
+  const b64 = dataUrl.split(',')[1];
+  const path = 'assets/menu/' + filename;
+  let sha = null;
+  try {
+    const chk = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/assets/menu/${encodeURIComponent(filename)}?ref=${BRANCH}`, {headers: ghHeaders()});
+    if (chk.ok){ sha = (await chk.json()).sha; }
+  } catch(e){}
+  const body = { message:'Admin: upload photo '+filename, content:b64, branch:BRANCH };
+  if (sha) body.sha = sha;
+  const r = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/assets/menu/${encodeURIComponent(filename)}`, {
+    method:'PUT', headers:{...ghHeaders(),'Content-Type':'application/json'},
+    body: JSON.stringify(body)
+  });
+  if (!r.ok){ const e = await r.json().catch(()=>({})); throw new Error('Upload photo : '+(e.message||r.status)); }
+  return filename;
+}
 
 /* =====================================================================
    AUTH
@@ -385,10 +438,16 @@ function openItemModal(id){
   document.getElementById('f_desc').value = m ? m.description.fr : '';
   document.getElementById('f_price').value = m ? m.price : '';
   document.getElementById('f_delete').classList.toggle('hidden', !m);
+  // Photo : réinitialise la sélection, affiche la photo actuelle si édition
+  pendingPhotoData = null; pendingPhotoName = null;
+  document.getElementById('f_photo').value = '';
+  const prev = document.getElementById('f_photoPreview');
+  if (m && m.image){ prev.src = imgSrc(m.image); prev.style.display = 'block'; }
+  else { prev.src = ''; prev.style.display = 'none'; }
   document.getElementById('itemModalBg').classList.add('open');
 }
 function closeItemModal(){ document.getElementById('itemModalBg').classList.remove('open'); }
-function saveItemForm(){
+async function saveItemForm(){
   const id = document.getElementById('f_id').value;
   const catId = document.getElementById('f_cat').value;
   const name = document.getElementById('f_name').value.trim();
@@ -397,21 +456,35 @@ function saveItemForm(){
   if (!name){ setStatus('Le nom du plat est requis.','err'); return; }
   if (isNaN(price) || price < 0){ setStatus('Prix invalide.','err'); return; }
   const cat = menuCategories.find(c=>c.id===catId);
+  const btn = document.querySelector('#itemModalBg .btn:not(.ghost):not(.danger)');
+  // Upload de la photo si une nouvelle a été choisie
+  let newImage = null;
+  if (pendingPhotoData){
+    btn.disabled = true; setStatus('Upload de la photo vers GitHub...','info');
+    try {
+      const fname = pendingPhotoName || (slugify(name)+'.jpg');
+      newImage = await uploadPhoto(pendingPhotoData, fname);
+      setStatus('Photo uploadée : '+fname,'ok');
+    } catch(e){ setStatus('❌ '+e.message,'err'); btn.disabled = false; return; }
+    btn.disabled = false;
+  }
   if (id){
     const it = menuItems.find(i=>i.id===id);
     it.categoryId = catId; it.categoryName = cat.raw_category;
     it.name.fr = it.name.en = it.name.ar = name;
     it.description.fr = it.description.en = it.description.ar = desc;
     it.price = price; it.priceFormatted = price + ' Da';
+    if (newImage) it.image = newImage;
   } else {
     const n = menuItems.length ? Math.max(...menuItems.map(i=>parseInt(i.id.replace('item_',''))||0)) : 0;
     menuItems.push({
       id:'item_'+(n+1), categoryId:catId, categoryName:cat.raw_category,
       name:{fr:name,en:name,ar:name}, description:{fr:desc,en:desc,ar:desc},
       price, priceFormatted:price+' Da', hasSizes:false,
-      image:guessImage(name), isSignature:false
+      image:newImage || guessImage(name), isSignature:false
     });
   }
+  pendingPhotoData = null; pendingPhotoName = null;
   closeItemModal(); markDirty(); renderList();
   setStatus('Plat enregistré localement — cliquez « Publier sur le site » pour le mettre en ligne.','info');
 }
