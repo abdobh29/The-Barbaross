@@ -86,3 +86,14 @@ export SUPOCLIP_API_URL=http://localhost:8000
 ```
 
 Create an API key in the local app under **Agents & API** (`/settings/api-keys`).
+
+## Free on a Windows PC
+
+YouTube blocks downloads from cloud runners. A home PC works, so `scripts/windows/supoclip-local.ps1`
+runs the whole stack locally (Docker Desktop + Whisper + free Gemini key) and saves clips to
+`Videos\SupoClip\<task id>\`:
+
+```powershell
+iwr https://raw.githubusercontent.com/abdobh29/The-Barbaross/main/.claude/skills/supoclip/scripts/windows/supoclip-local.ps1 -OutFile supoclip.ps1 -UseBasicParsing
+powershell -ExecutionPolicy Bypass -File .\supoclip.ps1 -Url "https://youtu.be/VIDEO_ID"
+```
