@@ -1,0 +1,75 @@
+name: SupoClip clips
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: YouTube or direct video URL
+        required: true
+      length:
+        description: Clip length (auto 15-60s, short 15-30s, medium 30-60s, long 60-120s)
+        type: choice
+        options: [auto, short, medium, long]
+        default: auto
+      template:
+        description: Caption template (default, hormozi, mrbeast, ...)
+        default: hormozi
+      format:
+        description: Output format
+        type: choice
+        options: [vertical, vertical_fit, vertical_pan, vertical_split, original]
+        default: vertical
+      preset:
+        description: Platform export preset (none = raw clips)
+        type: choice
+        options: [tiktok, reels, shorts, none]
+        default: tiktok
+
+jobs:
+  clip:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      SUPOCLIP_API_KEY: ${{ secrets.SUPOCLIP_API_KEY }}
+      SUPOCLIP_API_URL: ${{ vars.SUPOCLIP_API_URL || 'https://api.supoclip.com' }}
+      SUPOCLIP_DOWNLOAD_DIR: supoclip-downloads
+      S: .claude/skills/supoclip/scripts/supoclip.sh
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: .claude
+
+      - name: Create task
+        id: create
+        run: |
+          task_id="$($S create "${{ inputs.url }}" --length "${{ inputs.length }}" \
+            --template "${{ inputs.template }}" --format "${{ inputs.format }}" | jq -r .task_id)"
+          [ -n "$task_id" ] && [ "$task_id" != null ] || { echo "no task_id returned"; exit 1; }
+          echo "task_id=$task_id" >> "$GITHUB_OUTPUT"
+
+      - name: Wait for processing
+        run: $S wait "${{ steps.create.outputs.task_id }}" 6600 > task.json
+
+      - name: Download clips
+        run: |
+          id="${{ steps.create.outputs.task_id }}"
+          $S clips "$id" > clips.json
+          if [ "${{ inputs.preset }}" = none ]; then
+            $S download-all "$id"
+          else
+            for cid in $(jq -r '(.clips // .)[].id' clips.json); do
+              $S export "$id" "$cid" "${{ inputs.preset }}"
+            done
+          fi
+          cp clips.json task.json "$SUPOCLIP_DOWNLOAD_DIR"/
+          {
+            echo "## SupoClip clips"
+            echo "| # | Title | Start | End | Virality |"
+            echo "|---|---|---|---|---|"
+            jq -r '(.clips // .) | to_entries[] | "| \(.key+1) | \(.value.title // .value.filename // "-") | \(.value.start_time) | \(.value.end_time) | \(.value.virality_score // "-") |"' clips.json
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: supoclip-${{ steps.create.outputs.task_id }}
+          path: supoclip-downloads/
