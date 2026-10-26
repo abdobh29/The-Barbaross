@@ -8,3 +8,6 @@ Thumbs.db
 ehthumbs.db
 .DS_Store
 Desktop.ini
+
+# SupoClip downloaded/exported clips
+supoclip-downloads/

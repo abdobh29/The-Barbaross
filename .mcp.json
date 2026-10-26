@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "supoclip": {
+      "command": "uvx",
+      "args": [
+        "--from",
+        "git+https://github.com/FujiwaraChoki/supoclip#subdirectory=mcp",
+        "supoclip-mcp"
+      ],
+      "env": {
+        "SUPOCLIP_API_KEY": "${SUPOCLIP_API_KEY}",
+        "SUPOCLIP_API_URL": "${SUPOCLIP_API_URL:-https://api.supoclip.com}",
+        "SUPOCLIP_DOWNLOAD_DIR": "${SUPOCLIP_DOWNLOAD_DIR:-./supoclip-downloads}"
+      }
+    }
+  }
+}
