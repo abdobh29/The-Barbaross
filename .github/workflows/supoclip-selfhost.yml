@@ -1,0 +1,158 @@
+name: SupoClip clips (free, self-hosted)
+
+# Runs the open-source SupoClip stack on the GitHub runner itself, so no
+# SupoClip subscription is needed: Whisper transcribes locally and Ollama picks
+# the clips. Set the optional GOOGLE_API_KEY secret (free tier at
+# aistudio.google.com) to use Gemini instead of Ollama for better selection.
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: YouTube or direct video URL
+        required: true
+      length:
+        description: Clip length (auto 15-60s, short 15-30s, medium 30-60s, long 60-120s)
+        type: choice
+        options: [auto, short, medium, long]
+        default: auto
+      template:
+        description: Caption template (default, hormozi, mrbeast, ...)
+        default: hormozi
+      format:
+        description: Output format
+        type: choice
+        options: [vertical, vertical_fit, vertical_pan, vertical_split, original]
+        default: vertical
+      preset:
+        description: Platform export preset (none = raw clips)
+        type: choice
+        options: [tiktok, reels, shorts, none]
+        default: tiktok
+      whisper_model:
+        description: Whisper size (bigger = more accurate, slower on CPU)
+        type: choice
+        options: [base, small, medium]
+        default: small
+      ollama_model:
+        description: Ollama model used when no GOOGLE_API_KEY secret is set
+        default: qwen2.5:7b
+
+jobs:
+  clip:
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    env:
+      SUPOCLIP_API_URL: http://localhost:8000
+      SUPOCLIP_DOWNLOAD_DIR: ${{ github.workspace }}/supoclip-downloads
+      S: ${{ github.workspace }}/.claude/skills/supoclip/scripts/supoclip.sh
+      GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: .claude
+
+      - name: Free disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
+          docker system prune -af >/dev/null
+          df -h /
+
+      - name: Fetch SupoClip
+        run: git clone --depth 1 https://github.com/FujiwaraChoki/supoclip.git supoclip
+
+      - name: Choose LLM
+        id: llm
+        run: |
+          if [ -n "$GOOGLE_API_KEY" ]; then
+            echo "llm=google-gla:gemini-2.5-flash" >> "$GITHUB_OUTPUT"
+          else
+            echo "llm=ollama:${{ inputs.ollama_model }}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Start Ollama
+        if: startsWith(steps.llm.outputs.llm, 'ollama:')
+        run: |
+          curl -fsSL https://ollama.com/install.sh | sh
+          sudo mkdir -p /etc/systemd/system/ollama.service.d
+          printf '[Service]\nEnvironment="OLLAMA_HOST=0.0.0.0:11434"\nEnvironment="OLLAMA_CONTEXT_LENGTH=32768"\n' \
+            | sudo tee /etc/systemd/system/ollama.service.d/override.conf
+          sudo systemctl daemon-reload && sudo systemctl restart ollama
+          sleep 5
+          ollama pull "${{ inputs.ollama_model }}"
+
+      - name: Configure SupoClip
+        working-directory: supoclip
+        run: |
+          cat > .env <<EOF
+          SELF_HOST=true
+          BACKEND_CPU_ONLY=true
+          TRANSCRIPTION_PROVIDER=whisper
+          WHISPER_MODEL_SIZE=${{ inputs.whisper_model }}
+          LLM=${{ steps.llm.outputs.llm }}
+          OLLAMA_BASE_URL=http://host.docker.internal:11434/v1
+          GOOGLE_API_KEY=${GOOGLE_API_KEY}
+          YOUTUBE_POT_PROVIDER_URL=http://bgutil:4416
+          COMPOSE_PROFILES=youtube-proxy
+          BACKEND_AUTH_SECRET=$(openssl rand -hex 32)
+          EOF
+
+      - name: Start SupoClip (postgres, redis, backend, worker)
+        working-directory: supoclip
+        run: |
+          docker compose up -d --build --wait --wait-timeout 900 postgres redis bgutil backend worker
+          docker compose ps
+
+      - name: Create a local API key
+        working-directory: supoclip
+        run: |
+          key="sk_$(openssl rand -hex 24)"
+          hash="$(printf '%s' "$key" | sha256sum | cut -d' ' -f1)"
+          docker compose exec -T postgres psql -U supoclip -d supoclip -v ON_ERROR_STOP=1 <<SQL
+          INSERT INTO users (id, name, email, "emailVerified") VALUES ('gh-actions', 'GitHub Actions', 'actions@localhost', true);
+          INSERT INTO api_keys (user_id, name, key_hash, key_prefix) VALUES ('gh-actions', 'actions', '$hash', '${key:0:10}');
+          SQL
+          echo "::add-mask::$key"
+          echo "SUPOCLIP_API_KEY=$key" >> "$GITHUB_ENV"
+
+      - name: Create task
+        id: create
+        run: |
+          task_id="$($S create "${{ inputs.url }}" --length "${{ inputs.length }}" \
+            --template "${{ inputs.template }}" --format "${{ inputs.format }}" | jq -r .task_id)"
+          [ -n "$task_id" ] && [ "$task_id" != null ] || { echo "no task_id returned"; exit 1; }
+          echo "task_id=$task_id" >> "$GITHUB_OUTPUT"
+
+      - name: Wait for processing
+        run: $S wait "${{ steps.create.outputs.task_id }}" 18000 > task.json
+
+      - name: Download clips
+        run: |
+          id="${{ steps.create.outputs.task_id }}"
+          $S clips "$id" > clips.json
+          if [ "${{ inputs.preset }}" = none ]; then
+            $S download-all "$id"
+          else
+            for cid in $(jq -r '(.clips // .)[].id' clips.json); do
+              $S export "$id" "$cid" "${{ inputs.preset }}"
+            done
+          fi
+          cp clips.json task.json "$SUPOCLIP_DOWNLOAD_DIR"/
+          {
+            echo "## SupoClip clips"
+            echo "| # | Title | Start | End | Virality |"
+            echo "|---|---|---|---|---|"
+            jq -r '(.clips // .) | to_entries[] | "| \(.key+1) | \(.value.title // .value.filename // "-") | \(.value.start_time) | \(.value.end_time) | \(.value.virality_score // "-") |"' clips.json
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: SupoClip logs
+        if: always()
+        working-directory: supoclip
+        run: docker compose logs --no-color --tail 300 backend worker || true
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: supoclip-clips
+          path: supoclip-downloads/
+          if-no-files-found: ignore
