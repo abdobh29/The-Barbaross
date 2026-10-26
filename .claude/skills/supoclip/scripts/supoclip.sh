@@ -14,8 +14,13 @@ pretty() { if command -v jq >/dev/null; then jq .; else cat; fi; }
 call() {
   local method="$1" path="$2"; shift 2
   need_key
-  curl -sS --fail-with-body -X "$method" "$API$path" \
-    -H "Authorization: Bearer $SUPOCLIP_API_KEY" "$@"
+  local body
+  if ! body="$(curl -sS --fail-with-body -X "$method" "$API$path" \
+    -H "Authorization: Bearer $SUPOCLIP_API_KEY" "$@")"; then
+    echo "$body" >&2
+    return 1
+  fi
+  [[ -z "$body" ]] || printf '%s\n' "$body"
 }
 public() { curl -sS --fail-with-body "$API$1"; }
 
